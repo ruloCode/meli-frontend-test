@@ -71,3 +71,6 @@ export const fetchData = async (searchTerm, offset = 0) => {
 
 
 
+
+
+
