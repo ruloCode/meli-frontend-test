@@ -3,7 +3,7 @@ import Logo from "@/components/atoms/logo/Logo";
 import SearchBar from "@/components/molecules/searchBar/SearchBar";
 import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
-import MaxMarginTemplate from "@/components/templates/maxMarginTemplate/MaxMArginTemplate";
+import MaxMarginTemplate from "@/components/templates/maxMarginTemplate/MaxMarginTemplate";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState(null);
