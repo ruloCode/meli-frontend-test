@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './MaxMarginTemplate.module.scss';
 
-const MaxMarginTemplate = ({ children }) => {
+const MaxWidthMarginTemplate = ({ children }) => {
   return (
     <div className={styles.maxMarginTemplate__container}>
       {children}
@@ -9,4 +9,4 @@ const MaxMarginTemplate = ({ children }) => {
   );
 };
 
-export default MaxMarginTemplate;
+export default MaxWidthMarginTemplate;
