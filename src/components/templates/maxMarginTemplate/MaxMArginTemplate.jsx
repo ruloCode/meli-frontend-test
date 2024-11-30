@@ -4,7 +4,7 @@ import styles from './MaxMarginTemplate.module.scss';
 
 const MaxMarginTemplate = ({ children, className }) => {
   return (
-    <div className={`${styles.container} ${className || ''}`}>
+    <div className={styles.maxMarginTemplate__container}>
       {children}
     </div>
   );

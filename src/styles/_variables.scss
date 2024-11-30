@@ -14,4 +14,31 @@ $color-text-muted: rgba(0, 0, 0, 0.55);
 // --- State Colors ---
 $color-success: #00A650;  
 
+// --- Spacing ---
+$spacing-4: 4px;
+$spacing-6: 6px;
+$spacing-8: 8px;
+$spacing-12: 12px;
+$spacing-14: 14px;
+$spacing-16: 16px;
+$spacing-20: 20px;
+$spacing-24: 24px;
+$spacing-25: 25px;
+$spacing-28: 28px;
+$spacing-30: 30px;
+$spacing-34: 34px;
+$spacing-48: 48px;
+
+
+// --- Z-Index ---
+$z-index-background: 1;  // Elementos de fondo
+$z-index-default: 10;    // Elementos principales
+$z-index-overlay: 1000;   // Capas de overlay (por encima de elementos principales)
+$z-index-modal: 2000;    // Modal o elementos flotantes por encima de todo
+
+
+// --- Box Shadow ---
+$box-shadow-default: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+$box-shadow-alternative: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+
 

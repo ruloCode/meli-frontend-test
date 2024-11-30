@@ -1,0 +1,104 @@
+// styles/fonts.scss
+
+$primary-font: 'Roboto', sans-serif;
+$secondary-font: 'Georgia', serif;
+
+$font-sizes: (
+  large: 36px,
+  xlarge: 24px,
+  medium: 22px,
+  regular: 20px,
+  small: 18px,
+  xsmall: 15px,
+  tiny: 14px,
+  micro: 12px
+);
+
+$font-weights: (
+  tiny: 300,
+  regular: 400,
+  bold: 700
+);
+
+$colors: (
+  primary: rgba(0, 0, 0, 0.9),
+  secondary: rgba(0, 0, 0, 0.55),
+  success: #00A650,
+);
+
+// Mixin para font-styles
+@mixin font-styles($font-family, $size, $weight, $color) {
+  font-family: $font-family;
+  font-size: map-get($font-sizes, $size);
+  font-weight: map-get($font-weights, $weight);
+  color: map-get($colors, $color);
+}
+
+// Estilos generales para el componente
+.text {
+  @include font-styles($primary-font, regular, regular, primary); // Estilo predeterminado
+
+  &.primary-font {
+    font-family: $primary-font;
+  }
+
+  &.secondary-font {
+    font-family: $secondary-font;
+  }
+
+  &.large {
+    font-size: map-get($font-sizes, large);
+  }
+
+  &.xlarge {
+    font-size: map-get($font-sizes, xlarge);
+  }
+
+  &.medium {
+    font-size: map-get($font-sizes, medium);
+  }
+
+  &.regular {
+    font-size: map-get($font-sizes, regular);
+  }
+
+  &.small {
+    font-size: map-get($font-sizes, small);
+  }
+
+  &.xsmall {
+    font-size: map-get($font-sizes, xsmall);
+  }
+
+  &.tiny {
+    font-size: map-get($font-sizes, tiny);
+  }
+
+  &.micro {
+    font-size: map-get($font-sizes, micro);
+  }
+
+  &.tiny-weight {
+    font-weight: map-get($font-weights, tiny);
+  }
+
+  &.regular-weight {
+    font-weight: map-get($font-weights, regular);
+  }
+
+  &.bold-weight {
+    font-weight: map-get($font-weights, bold);
+  }
+
+  &.primary-color {
+    color: map-get($colors, primary);
+  }
+
+  &.secondary-color {
+    color: map-get($colors, secondary);
+  }
+
+  &.success-color {
+    color: map-get($colors, success);
+  }
+}

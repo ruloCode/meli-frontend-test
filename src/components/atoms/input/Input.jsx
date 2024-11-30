@@ -9,16 +9,15 @@ const Input = ({
   onChange,
 }) => {
   return (
-    <div className={styles.inputContainer}>
+    <div className={styles.input__container}>
       <input
         type={type}
         id="input"
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={styles.input} 
+        className={styles.input__field}  // Renombrado a BEM
       />
-    
     </div>
   );
 };

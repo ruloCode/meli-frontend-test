@@ -1,0 +1,13 @@
+.image__wrapper {
+  display: inline-block;   // Para mantener el contenedor alrededor de la imagen
+  overflow: hidden;        // Evita que la imagen se desborde
+  position: relative;      // Para un control más preciso de la imagen
+  width: 100%;
+  height: auto;
+}
+
+.image__picture {
+  object-fit: contain;   // Mantiene la relación de aspecto y asegura que la imagen se ajuste al contenedor
+  width: 100%;
+  height: 100%;
+}

@@ -4,7 +4,7 @@ import styles from "./ButtonIcon.module.scss";
 
 const ButtonIcon = ({ src, alt, width = 16, height = 16, onClick}) => {
   return (
-    <button className={styles.iconContainer} onClick={onClick}>
+    <button className={styles.buttonIcon__container} onClick={onClick}>
       <Image
         src={src}          
         alt={alt}          

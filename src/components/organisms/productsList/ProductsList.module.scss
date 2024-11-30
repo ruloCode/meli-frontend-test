@@ -1,0 +1,55 @@
+@import "@/styles/_variables.scss";
+
+.productsList {
+
+  padding: $spacing-30 0;
+
+  ul {
+    list-style: none;
+  }
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.paginationButton {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+  }
+
+  &.active {
+    background-color: #0056b3;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  &.ellipsis {
+    border: none;
+    background: transparent;
+    cursor: default;
+    font-weight: bold;
+  }
+
+  &.first,
+  &.last {
+    font-weight: bold;
+  }
+}

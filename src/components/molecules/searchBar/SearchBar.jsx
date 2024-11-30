@@ -48,7 +48,7 @@ const SearchBar = () => {
         onKeyPress={handleKeyPress}
         placeholder="Buscar productos..."
       />
-      <div className={styles["iconContainer"]} onClick={handleSearch}>
+      <div className={styles["search-bar__icon-container"]} onClick={handleSearch}>
         <Icon
           src={"/assets/ic_Search@2x.png"}
           alt="search_icon"

@@ -1,20 +1,33 @@
-@import "../../../styles/_variables.scss";
-.headerContianer {
-  background-color: $color-brand-primary;
+@import "@/styles/_variables.scss";
 
-}
 .header {
+  /* 1. Posicionamiento */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .5rem;
+  padding: $spacing-8;
+  gap: $spacing-8;
+
+  /* 2. Estilo visual */
   background-color: $color-brand-primary;
-  gap: .5rem;
+  box-shadow: $box-shadow-alternative;
+}
+
+.header__container {
+  /* 1. Caja de modelo */
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-8;
+  align-items: center;
+  width: 100%;
+  padding: 0 $spacing-4;
 }
 
 @media screen and (min-width: 768px) {
-  .header {
 
-    gap: 2rem;
+  .header__container {
+ 
+    gap: $spacing-34;
+  
   }
 }

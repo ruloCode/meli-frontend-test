@@ -1,40 +1,56 @@
 /* src/styles/components/Input.module.css */
-.inputContainer {
-  width: 100%;
-  height: 100%;
-  z-index: 910;
-  will-change: left;
-  transition: left 0.15s ease-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.input__container {
+  /* 1. Posicionamiento */
   position: relative;
-  overflow: visible;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 910;
+
+  /* 2. Caja de modelo */
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+
+  /* 3. Visualización */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 4. Efectos visuales */
+  will-change: left;
+  transition: left 0.15s ease-out;
 }
 
-.input-container label {
+.input__container label {
+  /* 1. Tipografía */
   display: block;
   font-size: 1rem;
 }
 
-.input {
+.input__field {
+  /* 1. Posicionamiento */
+  position: relative;
+
+  /* 2. Caja de modelo */
   width: 100%;
   height: 40px;
-  padding: 10px 60px 10px 15px;
-  font-size: 1rem;
+  padding: 10px 60px 10px 15px; /* padding ajustado: top, right, bottom, left */
+  margin: 0;
   border: none;
 
-  position: relative;
+  /* 3. Tipografía */
+  font-size: 1rem;
+
+  /* 4. Efectos visuales */
+  transition: border-color 0.3s ease;
 }
 
-.input:focus {
+.input__field:focus {
+  /* 4. Color y fondo */
   border-style: solid;
   border-color: #3483fa;
   border-width: 1.5px;
 }
-
-

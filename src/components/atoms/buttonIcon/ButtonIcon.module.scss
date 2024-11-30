@@ -1,4 +1,6 @@
-.iconContainer {
+@import "@/styles/_variables.scss";
+
+.buttonIcon__container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +10,8 @@
   width:46px ;
   height:100% ;
   z-index: 911;
+  z-index: $z-index-overlay;
+
 
   position: absolute;
   right: 0;
