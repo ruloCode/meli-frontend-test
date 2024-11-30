@@ -1,9 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { fetchData } from "../../../app/actions";
 import ProductResultCard from "@/components/molecules/productResultCard/ProductResultCard";
-import MaxMarginTemplate from "@/components/templates/maxMarginTemplate/MaxMarginTemplate";
+import {MaxMarginTemplate} from "../../templates/maxMarginTemplate/MaxMarginTemplate";
 import Link from "next/link";
 import styles from "./ProductsList.module.scss";
 
