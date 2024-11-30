@@ -1,27 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Input from "@/components/atoms/input/Input";
 import Icon from "@/components/atoms/buttonIcon/ButtonIcon";
+import { useProductsStore } from "@/stores/products-store";
 import { useRouter } from 'next/navigation'; // Importar useRouter para manejar la navegación
 import styles from "./SearchBar.module.scss";
 
 const SearchBar = () => {
-  // Inicializamos el estado con el valor guardado en localStorage (si existe)
-  const [searchTerm, setSearchTerm] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("searchTerm") || ""; // Recuperar término de búsqueda del localStorage
-    }
-    return "";
-  });
-
+  // Obtener searchTerm y la función setSearchTerm del store
+  const { searchTerm, setSearchTerm } = useProductsStore();
   const router = useRouter(); // Hook de Next.js para navegar
 
-  // Función para manejar la búsqueda
+  // Al hacer una nueva búsqueda, navegamos a la página de resultados con el término de búsqueda
   const handleSearch = () => {
     if (searchTerm) {
-      localStorage.setItem("searchTerm", searchTerm); // Guardar el término de búsqueda en localStorage
-      // Al hacer una nueva búsqueda, se resetea el offset a 0
-      router.push(`/items?search=${encodeURIComponent(searchTerm)}&offset=0`); // Navegar a la página de resultados con el término de búsqueda
+      router.push(`/items?search=${encodeURIComponent(searchTerm)}&offset=0`); // Navegar a la página de resultados
     }
   };
 
@@ -32,11 +25,10 @@ const SearchBar = () => {
     }
   };
 
-  // Actualizar el término de búsqueda en el estado y localStorage cuando el usuario escribe
+  // Actualizar el término de búsqueda en el store
   const handleChange = (e) => {
     const value = e.target.value;
-    setSearchTerm(value);
-    localStorage.setItem("searchTerm", value); // Guardar el término de búsqueda en localStorage cada vez que se cambia
+    setSearchTerm(value); // Actualizar el estado en el store
   };
 
   return (
