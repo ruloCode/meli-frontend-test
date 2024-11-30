@@ -32,6 +32,8 @@ export const fetchData = async (searchTerm, offset = 0) => {
       const originalPrice = item.original_price || item.price;  // Si no hay original_price, usamos el precio actual
       const currentPrice = item.price;
 
+
+      // Calcular el porcentaje de descuento
       // Calcular el porcentaje de descuento
       const discountPercentage = originalPrice > 0 ? ((originalPrice - currentPrice) / originalPrice) * 100 : 0;
 
