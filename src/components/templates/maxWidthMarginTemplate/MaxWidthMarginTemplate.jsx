@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MaxMarginTemplate.module.scss';
+import styles from './MaxWidthMarginTemplate.module.scss';
 
 export const MaxWidthMarginTemplate = ({ children }) => {
   return (

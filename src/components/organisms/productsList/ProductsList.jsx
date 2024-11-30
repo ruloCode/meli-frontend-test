@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ProductResultCard from "@/components/molecules/productResultCard/ProductResultCard";
-import {MaxMarginTemplate} from "../../templates/maxMarginTemplate/MaxMarginTemplate";
 import Link from "next/link";
 import styles from "./ProductsList.module.scss";
+import MaxMarginTemplate from "../../templates/maxWidthMarginTemplate/MaxWidthMarginTemplate";
 
 const ITEMS_PER_PAGE = 10;
 
