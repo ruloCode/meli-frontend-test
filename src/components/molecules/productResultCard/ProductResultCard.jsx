@@ -1,11 +1,20 @@
-// components/molecules/ProductCard/ProductCard.js
 import React from "react";
 import Image from "@/components/atoms/image/Image"; // Importar componente de imagen
 import Text from "@/components/atoms/text/Text"; // Importar componente de texto
 import styles from "./ProductResultCard.module.scss";
 
 const ProductResultCard = ({ product }) => {
-  console.log(product, "product");
+  // Comparar los precios directamente como números
+  const originalPrice = parseFloat(product.original_price); 
+  const currentPrice = parseFloat(product.price.amount); 
+
+  console.log(
+    originalPrice < currentPrice, // Comparación entre precios
+    "product",
+    originalPrice,
+    currentPrice
+  );
+
   return (
     <div className={styles.productCard}>
       <Image
@@ -32,14 +41,43 @@ const ProductResultCard = ({ product }) => {
         </div>
 
         <div>
-          <Text
-            text={`${product.price.amount}`}
-            currency
-            size="xlarge"
-            weight="regular"
-            color="primary"
-            fontFamily="primary-font"
-          />
+          {/* Mostrar el precio original solo si es mayor que el precio actual */}
+          {originalPrice > currentPrice && (
+            <Text
+              text={`${product.original_price}`}
+              currency
+              size="micro"
+              weight="regular"
+              color="secondary"
+              strikethrough
+              fontFamily="primary-font"
+            />
+          )}
+
+          <div className={styles.price__container}>
+            {/* Mostrar el precio actual */}
+            <Text
+              text={`${product.price.amount}`}
+              currency
+              size="xlarge"
+              weight="regular"
+              color="primary"
+              fontFamily="primary-font"
+            />
+
+            {/* Mostrar el porcentaje de descuento solo si es mayor que 0 */}
+            {Number(product.discount_percentage) > 0 && (
+              <Text
+                text={`${product.discount_percentage}% OFF`}
+                size="micro"
+                weight="tiny"
+                color="success-color"
+                fontFamily="primary-font"
+              />
+            )}
+          </div>
+
+          {/* Mostrar la opción de pago en cuotas */}
           <Text
             text={product.installments}
             size="tiny"
@@ -48,6 +86,8 @@ const ProductResultCard = ({ product }) => {
             fontFamily="primary-font"
           />
         </div>
+
+        {/* Mostrar la condición del producto si existe */}
         {product.condition && (
           <Text
             text={product.condition}
@@ -57,6 +97,8 @@ const ProductResultCard = ({ product }) => {
             fontFamily="primary-font"
           />
         )}
+
+        {/* Mostrar el mensaje de envío gratis si aplica */}
         {product.free_shipping && (
           <Text
             text={product.free_shipping}

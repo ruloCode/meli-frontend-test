@@ -1,11 +1,9 @@
 @import "@/styles/_variables.scss";
 @import "@/styles/fonts.scss";
 
-
 .title {
   @include font-styles($primary-font, regular, tiny, primary);
 }
-
 
 .productCard {
   display: grid;
@@ -22,15 +20,19 @@
 .productImage {
   width: 160px;
   height: 160px;
-
 }
 
 .productInfo {
   height: 100%;
-  padding-top: $spacing-30;
   display: flex;
   flex-direction: column;
-  gap: $spacing-25;
+  gap: $spacing-12;
+}
+
+.price__container {
+  display: flex;
+  align-items: center;
+  gap: $spacing-8;
 }
 
 .productName__container {
@@ -44,26 +46,31 @@
   font-size: 18px;
 }
 
-
-
 .productPrice {
   @include font-styles($primary-font, xlarge, regular, primary);
 }
-
 
 @media screen and (min-width: 768px) {
   .productImage {
     width: 100%;
     height: 250px;
-  
+  }
+
+  .productInfo {
+
+    height: 100%;
+    padding-top: $spacing-30;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-25;
+ 
   }
 
   .productCard {
-   padding: $spacing-12;
-  grid-template-columns: 259px 1fr;
+    padding: $spacing-12;
+    grid-template-columns: 259px 1fr;
 
-
-   padding-bottom: $spacing-20; 
-   gap: $spacing-24;
+    padding-bottom: $spacing-20;
+    gap: $spacing-24;
   }
 }

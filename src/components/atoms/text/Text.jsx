@@ -1,4 +1,3 @@
-// components/atoms/Text/Text.js
 import React from "react";
 import styles from "./Text.module.scss";
 
@@ -9,7 +8,8 @@ const Text = ({
   weight = "regular-weight", 
   color = "primary-color", // Establecer un valor por defecto para color
   className = "", 
-  currency = false 
+  currency = false,
+  strikethrough = false  // Nueva propiedad para aplicar el tachado
 }) => {
   // Formatear el texto como un precio si 'currency' está activo
   const formattedText = currency 
@@ -22,7 +22,7 @@ const Text = ({
     : text;
 
   return (
-    <p className={`${styles.text} ${styles[fontFamily]} ${styles[size]} ${styles[weight]} ${styles[color]} ${className}`}>
+    <p className={`${styles.text} ${styles[fontFamily]} ${styles[size]} ${styles[weight]} ${styles[color]} ${className} ${strikethrough ? styles.strikethrough : ''}`}>
       {formattedText}
     </p>
   );

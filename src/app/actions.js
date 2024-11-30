@@ -1,11 +1,7 @@
 "use server";
 
-export const getData = () => {
-  return {
-    type: "ADD_TO_CART",
-    payload: "payload"
-  };
-}
+
+
 
 export const fetchData = async (searchTerm, offset = 0) => {
   const url = `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(searchTerm)}&offset=${offset}`;
@@ -23,29 +19,41 @@ export const fetchData = async (searchTerm, offset = 0) => {
       
       // Crear el mensaje de cuotas si hay cuotas
       const installmentsMessage = installmentsQuantity > 0
-        ? `Mismo precio en ${installmentsQuantity} cuotas de $${installmentsAmount.toLocaleString('es-AR')}`
+        ? `Mismo precio en ${installmentsQuantity} cuotas de $${installmentsAmount.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
         : 'No aplica';
-
+      
       // Verificar si el envío es gratuito
       const shippingMessage = item.shipping?.free_shipping ? "Envío gratis" : "Envío no incluido";
 
       // Verificar si el producto es reacondicionado
       const conditionMessage = item.condition === "refurbished" ? "Reacondicionado" : "";
+      
+      // Obtener el precio original (tachado) y el precio actual
+      const originalPrice = item.original_price || item.price;  // Si no hay original_price, usamos el precio actual
+      const currentPrice = item.price;
+
+      // Calcular el porcentaje de descuento
+      const discountPercentage = originalPrice > 0 ? ((originalPrice - currentPrice) / originalPrice) * 100 : 0;
+
+      // Redondear el porcentaje a un número entero y convertir a formato con el símbolo de porcentaje y "OFF"
+      const discountPercentageRounded = Math.round(discountPercentage)
 
       return {
         id: item.id,
         title: item.title,
         price: {
           currency: item.currency_id,
-          amount: item.price,
-          decimals: item.price % 1 !== 0 ? item.price.toString().split('.')[1].length : 0,
-          regular_amount: item.original_price || item.price,
+          amount: currentPrice,
+          decimals: currentPrice % 1 !== 0 ? currentPrice.toString().split('.')[1].length : 0,
+          regular_amount: originalPrice,
         },
         picture: item.thumbnail,
         condition: conditionMessage,  // Aquí agregamos el estado del producto (nuevo o reacondicionado)
         free_shipping: shippingMessage,  // Aquí agregamos el mensaje de envío
         installments: installmentsMessage,  // Aquí agregamos el mensaje de cuotas
         seller: item.seller.nickname,
+        original_price: originalPrice,  // Agregar el precio tachado
+        discount_percentage: discountPercentageRounded,  // Agregar el porcentaje de descuento en formato "6% OFF"
       };
     });
 
@@ -58,3 +66,6 @@ export const fetchData = async (searchTerm, offset = 0) => {
     console.error(error);
   }
 };
+
+
+

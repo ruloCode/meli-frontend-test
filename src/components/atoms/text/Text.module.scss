@@ -29,9 +29,19 @@ $colors: (
 // Estilos para el componente Text
 .text {
   font-family: $primary-font;
-  font-size: map-get($font-sizes, regular);
+  font-size: map-get($font-sizes, regular);  // Tamaño por defecto
   font-weight: map-get($font-weights, regular);
   color: map-get($colors, primary); // Default color
+
+  // Media query para pantallas pequeñas
+  @media (max-width: 600px) {
+    font-size: map-get($font-sizes, xsmall); // Tamaño más pequeño
+  }
+
+  // Media query para pantallas medianas
+  @media (max-width: 900px) {
+    font-size: map-get($font-sizes, small); // Tamaño intermedio
+  }
 }
 
 // Clases para font-family
@@ -89,7 +99,7 @@ $colors: (
   font-weight: map-get($font-weights, bold);
 }
 
-// Clases para color (modificar para aceptar dinamicamente el color)
+// Clases para color (modificar para aceptar dinámicamente el color)
 .text {
   &.primary-color {
     color: map-get($colors, primary);
@@ -103,4 +113,8 @@ $colors: (
     color: map-get($colors, success);
   }
 
+  // Clase para el texto tachado
+  &.strikethrough {
+    text-decoration: line-through;
+  }
 }

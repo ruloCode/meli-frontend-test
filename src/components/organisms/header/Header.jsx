@@ -1,12 +1,21 @@
 "use client";
 import Logo from "@/components/atoms/logo/Logo";
 import SearchBar from "@/components/molecules/searchBar/SearchBar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import MaxMarginTemplate from "@/components/templates/maxMarginTemplate/MaxMArginTemplate";
 
 const Header = () => {
-  const searchTerm = localStorage.getItem("searchTerm");
+  const [searchTerm, setSearchTerm] = useState(null);
+
+  useEffect(() => {
+    // Solo ejecutar en el cliente
+    const storedSearchTerm = localStorage.getItem("searchTerm");
+    if (storedSearchTerm) {
+      setSearchTerm(storedSearchTerm);
+    }
+  }, []);
+
   return (
     <div className={styles["header"]}>
       <MaxMarginTemplate>
