@@ -1,0 +1,40 @@
+/* src/styles/components/Input.module.css */
+.inputContainer {
+  width: 100%;
+  height: 100%;
+  z-index: 910;
+  will-change: left;
+  transition: left 0.15s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.input-container label {
+  display: block;
+  font-size: 1rem;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 10px 60px 10px 15px;
+  font-size: 1rem;
+  border: none;
+
+  position: relative;
+}
+
+.input:focus {
+  border-style: solid;
+  border-color: #3483fa;
+  border-width: 1.5px;
+}
+
+

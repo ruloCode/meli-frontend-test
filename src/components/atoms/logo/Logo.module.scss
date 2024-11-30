@@ -1,0 +1,32 @@
+.logoContainer {
+
+ 
+
+  background-repeat: no-repeat;
+    overflow: hidden;
+    text-indent: -999px;
+    background-image: url("/assets/logo__small_25years.png");
+
+    height: 32px;
+    width: 44px;
+    display: flex
+;
+    position: static;
+    left: 0;
+    top: 0;
+    background-size: contain;
+}
+
+@media screen and (min-width: 768px) {
+
+  .logoContainer {
+    width: 134px;
+    height: 34px;
+
+    background-image: url("/assets/logo_large_25years@2x.png");
+
+
+  }
+}
+
+
