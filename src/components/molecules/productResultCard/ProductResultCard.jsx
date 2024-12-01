@@ -1,20 +1,21 @@
 import React from "react";
-import Image from "@/components/atoms/image/Image"; // Importar componente de imagen
+import Image from "next/image"; // Importar componente de imagen
 import Text from "@/components/atoms/text/Text"; // Importar componente de texto
 import styles from "./ProductResultCard.module.scss";
 
 const ProductResultCard = ({ product }) => {
   // Comparar los precios directamente como números
-  const originalPrice = parseFloat(product.original_price); 
-  const currentPrice = parseFloat(product.price.amount); 
-
-
+  const originalPrice = parseFloat(product.original_price);
+  const currentPrice = parseFloat(product.price.amount);
 
   return (
     <div className={styles.productCard}>
       <Image
         src={product.picture}
         alt={product.name}
+        width={160}
+        height={160}
+        objectFit="cover"
         className={styles.productImage}
       />
       <div className={styles.productInfo}>
