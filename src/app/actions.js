@@ -3,42 +3,32 @@
 
 
 
-export const fetchData = async (searchTerm, offset = 0) => {
-  const url = `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(searchTerm)}`;
+export const fetchData = async (searchTerm, offset = 0, limit = 10) => {
+  const url = `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(searchTerm)}&offset=${offset}&limit=${limit}`;
   
   try {
     const response = await fetch(url);
     const data = await response.json();
 
-    // Formateamos la respuesta para que cumpla con la estructura solicitada
     const categories = data.filters?.find(filter => filter.id === 'category')?.values?.map(value => value.name) || [];
     const items = data.results.map(item => {
-      // Obtener el monto de la cuota, si existe
       const installmentsAmount = item.installments?.amount || 0;
       const installmentsQuantity = item.installments?.quantity || 0;
-      
-      // Crear el mensaje de cuotas si hay cuotas
+
       const installmentsMessage = installmentsQuantity > 0
         ? `Mismo precio en ${installmentsQuantity} cuotas de $${installmentsAmount.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
         : 'No aplica';
-      
-      // Verificar si el envío es gratuito
+
       const shippingMessage = item.shipping?.free_shipping ? "Envío gratis" : "Envío no incluido";
 
-      // Verificar si el producto es reacondicionado
       const conditionMessage = item.condition === "refurbished" ? "Reacondicionado" : "";
-      
-      // Obtener el precio original (tachado) y el precio actual
-      const originalPrice = item.original_price || item.price;  // Si no hay original_price, usamos el precio actual
+
+      const originalPrice = item.original_price || item.price;
       const currentPrice = item.price;
 
-
-      // Calcular el porcentaje de descuento
-      // Calcular el porcentaje de descuento
       const discountPercentage = originalPrice > 0 ? ((originalPrice - currentPrice) / originalPrice) * 100 : 0;
 
-      // Redondear el porcentaje a un número entero y convertir a formato con el símbolo de porcentaje y "OFF"
-      const discountPercentageRounded = Math.round(discountPercentage)
+      const discountPercentageRounded = Math.round(discountPercentage);
 
       return {
         id: item.id,
@@ -50,24 +40,26 @@ export const fetchData = async (searchTerm, offset = 0) => {
           regular_amount: originalPrice,
         },
         picture: item.thumbnail,
-        condition: conditionMessage,  // Aquí agregamos el estado del producto (nuevo o reacondicionado)
-        free_shipping: shippingMessage,  // Aquí agregamos el mensaje de envío
-        installments: installmentsMessage,  // Aquí agregamos el mensaje de cuotas
+        condition: conditionMessage,
+        free_shipping: shippingMessage,
+        installments: installmentsMessage,
         seller: item.seller.nickname,
-        original_price: originalPrice,  // Agregar el precio tachado
-        discount_percentage: discountPercentageRounded,  // Agregar el porcentaje de descuento en formato "6% OFF"
+        original_price: originalPrice,
+        discount_percentage: discountPercentageRounded,
       };
     });
 
     return {
       categories,
       items,
-      total: data.paging?.total || 0,  // Incluimos el total de productos disponibles
+      total: data.paging?.total || 0,
     };
   } catch (error) {
     console.error(error);
+    return { categories: [], items: [], total: 0 };
   }
 };
+
 
 
 

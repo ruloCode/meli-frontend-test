@@ -1,0 +1,30 @@
+// PaginationControls.module.scss
+.paginationControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.paginationControls__button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  &--disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+.paginationControls__pageNumber {
+  font-size: 16px;
+}

@@ -1,74 +1,76 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { fetchData } from "../actions";
-import ProductsList from "@/components/organisms/productsList/ProductsList";
-import { useProductsStore } from "@/stores/products-store";
+import { useEffect, useState } from "react";
+import PaginationControls from "@/components/organisms/paginationControls/PaginationControls";
+import { fetchData } from "../actions"; // Asegúrate de importar la función fetchData
+import { useRouter, useSearchParams } from "next/navigation"; // Necesitamos para manejar la URL
 
-const ItemsPage = () => {
-  const {
-    searchTerm,
-    setProducts,
-    setTotalItems,
-    setTotalPages,
-    products,
-    totalItems,
-    totalPages,
-    setSearchTerm,
-    setOffset,
-    offset,
-  } = useProductsStore();
-
+export default function Home() {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  const getData = async () => {
-    console.log("get items");
+  const searchParams = useSearchParams(); // Obtener los parámetros de búsqueda de la URL
+  const router = useRouter(); // Hook de Next.js para navegación
 
-    if (!searchTerm) return;
+  // Obtener los parámetros de búsqueda y paginación de la URL
+  const searchValue = searchParams.get("search") || ''; // Termino de búsqueda
+  const page = Number(searchParams.get("page")) || 1; // Número de página
+  const per_page = Number(searchParams.get("per_page")) || 10; // Elementos por página
+  const offset = (page - 1) * per_page; // Calcular el offset basado en la página
 
-    setLoading(true);
-    setError(null);
-
-    try {
-      const currentOffset = offset || 0;
-
-      const { items, totalItems, totalPages } = await fetchData(
-        searchTerm,
-        currentOffset
-      );
-
-      console.log("items", items, searchTerm);
-
-      // Usa functional updates para evitar problemas de dependencias
-      setProducts(items);
-      setTotalItems(totalItems);
-      setTotalPages(totalPages);
-
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError("Hubo un problema al obtener los productos.");
-      setLoading(false);
-    }
-  };
-
-  // Usa una función de dependencia más específica
   useEffect(() => {
-    getData();
-  }, [searchTerm, offset]); // Elimina las funciones de estado de Zustand de las dependencias
+    const loadData = async () => {
+      setLoading(true);
 
-  if (loading) return <div>Cargando productos...</div>;
-  if (error) return <div>{error}</div>;
+      // Realiza la búsqueda con el término y la paginación
+      const { items, categories, total } = await fetchData(searchValue, offset, per_page);
+      setProducts(items);
+      setCategories(categories);
+      setTotal(total);
+      setLoading(false);
+    };
+
+    loadData(); // Cargar los productos cuando cambien los parámetros
+
+  }, [searchValue, page, per_page]); // Dependemos de los parámetros search, page y per_page
+
+  const start = (page - 1) * per_page;
+  const end = start + per_page;
+
+  // Cambiar la URL para navegar entre páginas
+  const handlePageChange = (newPage) => {
+    router.push(`/items?search=${encodeURIComponent(searchValue)}&page=${newPage}&per_page=${per_page}`);
+  };
 
   return (
     <div>
-      {products?.length > 0 ? (
-        <ProductsList />
+      <h1>Page {page}</h1>
+      <h2>Per page {per_page}</h2>
+
+      {loading ? (
+        <p>Cargando...</p>
       ) : (
-        <p>No se encontraron resultados para la búsqueda: {searchTerm}</p>
+        <>
+          {products.length > 0 ? (
+            products.map((entry) => (
+              <div key={entry.id}>
+                <p>{entry.title}</p>
+              </div>
+            ))
+          ) : (
+            <p>No se encontraron resultados para: "{searchValue}"</p>
+          )}
+
+          <PaginationControls
+            hasNextPage={end < total}
+            hasPrevPage={start > 0}
+            page={page}
+            per_page={per_page}
+            onPageChange={handlePageChange} // Pasamos el manejador de cambio de página
+          />
+        </>
       )}
     </div>
   );
-};
-
-export default ItemsPage;
+}
