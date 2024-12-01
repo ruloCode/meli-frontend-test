@@ -1,21 +1,21 @@
-/* styles/Breadcrumbs.module.css */
+/* styles/Breadcrumbs.module.scss */
 @import "@/styles/_variables.scss";
 
 .breadcrumbs {
   font-family: Arial, sans-serif;
   font-size: 16px;
   color: $color-text-secondary;
+  padding: 0 $spacing-12;
 }
 
 .breadcrumbs__container {
   display: flex;
-  gap: 8px;
+  gap: $spacing-4;
   width: 100%;
 }
 
 .mainButton {
   border: none;
-
 }
 
 .step__container {
@@ -32,7 +32,6 @@
 
 .step {
   display: inline;
-
 }
 
 .separator {
@@ -50,4 +49,33 @@
 
 .step span {
   color: gray;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .breadcrumbs__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: $spacing-4;
+  }
+
+  .breadcrumbs ol {
+    flex-wrap: nowrap;
+  }
+
+  /* Ocultar los pasos después del primer paso */
+  .step:not(:first-child) {
+    display: none;
+  }
+
+  /* Mostrar el primer paso y el botón de 'Volver al listado' */
+  .breadcrumbs__container .step__container:first-child {
+    display: flex;
+  }
+
+  /* Asegurarse de que el separator entre pasos no se vea */
+  .separator {
+    display: none;
+  }
 }

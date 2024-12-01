@@ -3,7 +3,7 @@
 .productDetail {
   display: flex;
   flex-direction: column;
-  margin-top: $spacing-30;
+  margin: $spacing-30 0;
 }
 
 .productDetail__container {
@@ -16,22 +16,34 @@
 .productCard {
   box-shadow: $box-shadow-default;
   background-color: $color-background-secondary;
-  min-height: 80vh;
   border-radius: $spacing-4;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-28;
 
   padding: $spacing-24;
 }
 
+.productName {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+.productDescription {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+}
 .productImageAndInfo {
   display: grid;
   gap: $spacing-48;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
 }
 .imageContainer {
-  width: 700px;
+  width: 320px;
   height: auto;
   position: relative;
-  min-height: 520px;
+  min-height: 312px;
 }
 
 .productImage {
@@ -42,4 +54,30 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-28;
+}
+
+.productColor {
+  display: flex;
+  gap: $spacing-4;
+  align-items: flex-end;
+}
+
+
+@media screen and (min-width: 768px) {
+  .productImageAndInfo {
+    display: grid;
+    gap: $spacing-48;
+    grid-template-columns: auto 1fr;
+  }
+  
+}
+
+@media screen and (min-width: 1200px) {
+  .imageContainer {
+    width: 600px;
+    height: auto;
+    position: relative;
+    min-height: 520px;
+  }
+  
 }

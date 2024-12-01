@@ -34,7 +34,7 @@ const Breadcrumbs = ({ steps }) => {
                   weight="regular"
                   color="secondary-color"
                 />
-                <span className={styles.separator}> | </span>
+                <span className={styles.separator}> {`>`} </span>
               </div>
             ) : (
               <span>{step.label}</span>

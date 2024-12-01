@@ -8,12 +8,7 @@ const ProductResultCard = ({ product }) => {
   const originalPrice = parseFloat(product.original_price); 
   const currentPrice = parseFloat(product.price.amount); 
 
-  console.log(
-    originalPrice < currentPrice, // Comparación entre precios
-    "product",
-    originalPrice,
-    currentPrice
-  );
+
 
   return (
     <div className={styles.productCard}>
