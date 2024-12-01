@@ -1,21 +1,29 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Input from "@/components/atoms/input/Input";
 import Icon from "@/components/atoms/buttonIcon/ButtonIcon";
 import { useProductsStore } from "@/stores/products-store";
-import { useRouter } from 'next/navigation'; // Importar useRouter para manejar la navegación
+import { useRouter } from "next/navigation"; // Importar useRouter para manejar la navegación
 import styles from "./SearchBar.module.scss";
 
 const SearchBar = () => {
   // Obtener searchTerm y la función setSearchTerm del store
-  const { searchTerm, setSearchTerm } = useProductsStore();
+  const { setSearchTerm } = useProductsStore();
+  const [localSearchTerm, setLocalSearchTerm] = useState(""); // Estado local para el término de búsqueda
   const router = useRouter(); // Hook de Next.js para navegar
 
   // Al hacer una nueva búsqueda, navegamos a la página de resultados con el término de búsqueda
   const handleSearch = () => {
-    if (searchTerm) {
-      router.push(`/items?search=${encodeURIComponent(searchTerm)}&offset=0`); // Navegar a la página de resultados
+    if (localSearchTerm) {
+      setSearchTerm(localSearchTerm); // Actualizar el estado global solo cuando se envíe el formulario
+      router.push(`/items?search=${encodeURIComponent(localSearchTerm)}`); // Navegar a la página de resultados
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Evitar el comportamiento por defecto de envío del formulario
+
+    handleSearch();
   };
 
   // Función para manejar la tecla Enter
@@ -25,22 +33,24 @@ const SearchBar = () => {
     }
   };
 
-  // Actualizar el término de búsqueda en el store
+  // Actualizar el término de búsqueda local
   const handleChange = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value); // Actualizar el estado en el store
+    setLocalSearchTerm(e.target.value); // Actualizar el estado local mientras escribe
   };
 
   return (
-    <div className={styles["search-bar"]}>
+    <form onSubmit={handleSubmit} className={styles["search-bar"]}>
       <Input
         type="text"
-        value={searchTerm}
+        value={localSearchTerm}
         onChange={handleChange} // Llamar a handleChange al escribir
         onKeyPress={handleKeyPress}
         placeholder="Buscar productos..."
       />
-      <div className={styles["search-bar__icon-container"]} onClick={handleSearch}>
+      <div
+        className={styles["search-bar__icon-container"]}
+        onClick={handleSearch}
+      >
         <Icon
           src={"/assets/ic_Search@2x.png"}
           alt="search_icon"
@@ -48,7 +58,7 @@ const SearchBar = () => {
           height={16}
         />
       </div>
-    </div>
+    </form>
   );
 };
 

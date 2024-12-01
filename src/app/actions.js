@@ -1,10 +1,10 @@
-"use server";
+"use client";
 
 
 
 
 export const fetchData = async (searchTerm, offset = 0) => {
-  const url = `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(searchTerm)}&offset=${offset}`;
+  const url = `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(searchTerm)}`;
   
   try {
     const response = await fetch(url);
