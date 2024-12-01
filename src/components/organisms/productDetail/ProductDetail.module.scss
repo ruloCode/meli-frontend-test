@@ -1,0 +1,45 @@
+@import "@/styles/_variables.scss";
+
+.productDetail {
+  display: flex;
+  flex-direction: column;
+  margin-top: $spacing-30;
+}
+
+.productDetail__container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-10;
+  height: 100%;
+}
+
+.productCard {
+  box-shadow: $box-shadow-default;
+  background-color: $color-background-secondary;
+  min-height: 80vh;
+  border-radius: $spacing-4;
+
+  padding: $spacing-24;
+}
+
+.productImageAndInfo {
+  display: grid;
+  gap: $spacing-48;
+  grid-template-columns: auto 1fr;
+}
+.imageContainer {
+  width: 700px;
+  height: auto;
+  position: relative;
+  min-height: 520px;
+}
+
+.productImage {
+  object-fit: contain;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-28;
+}

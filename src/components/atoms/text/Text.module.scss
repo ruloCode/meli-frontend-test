@@ -24,6 +24,7 @@ $colors: (
   primary: rgba(0, 0, 0, 0.9),
   secondary: rgba(0, 0, 0, 0.55),
   success: #00A650,
+  active: #0056b3
 );
 
 // Estilos para el componente Text
@@ -111,6 +112,9 @@ $colors: (
 
   &.success-color {
     color: map-get($colors, success);
+  }
+  &.active-color {
+    color: map-get($colors, active);
   }
 
   // Clase para el texto tachado

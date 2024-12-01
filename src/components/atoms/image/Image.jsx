@@ -5,8 +5,7 @@ import styles from "./Image.module.scss"; // Importar los estilos SCSS como mód
 const Image = ({
   src,
   alt,
-  width,
-  height,
+
   className,
   fetchPriority = "low",
 }) => {
