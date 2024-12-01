@@ -1,17 +1,17 @@
-@import "@/styles/_variables.scss";  
+@import "@/styles/_variables.scss";
 
 .search-bar {
   /* 1. Posicionamiento */
   display: flex;
   align-items: center;
   justify-content: space-between;
- width: 1018px;
+  width: 1018px;
   overflow: hidden;
-  background-color: $color-background-secondary;  
+  background-color: $color-background-secondary;
   position: relative;
 
   /* 2. Caja de modelo */
-  height: 40px;  
+  height: 40px;
   overflow: visible;
 
   /* 3. Efectos visuales */
@@ -21,10 +21,9 @@
   border-style: solid;
   border-color: rgba(0, 0, 0, 0);
 
+  background: white;
   /* 5. Establecer índice de apilamiento */
   z-index: $z-index-background;
-
-
 }
 
 .search-bar__icon-container {
@@ -32,5 +31,5 @@
   position: relative;
 
   /* 2. Tamaño */
-  height: 21px;  // Reemplazar por variable de espaciado si corresponde
+  height: 21px; // Reemplazar por variable de espaciado si corresponde
 }

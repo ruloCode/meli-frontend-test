@@ -3,14 +3,17 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { useProductsStore } from "@/stores/products-store";
+
 import styles from "./Logo.module.scss";
 
 const Logo = ({ searchTerm }) => {
+  const { setSearchTerm } = useProductsStore();
+
   // Función para manejar el clic en el logo
   const handleClick = () => {
     if (searchTerm) {
-      // Guardar el término de búsqueda en localStorage
-      localStorage.setItem("searchTerm", "");
+      setSearchTerm("");
     }
   };
 

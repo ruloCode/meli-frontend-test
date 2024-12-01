@@ -1,30 +1,92 @@
-// PaginationControls.module.scss
+@import "@/styles/_variables.scss";
+
 .paginationControls {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: $spacing-4;
+  background: #f5f5f5;
+  padding: $spacing-16;
 }
 
 .paginationControls__button {
-  background-color: #007bff;
-  color: white;
   border: none;
   padding: 8px 16px;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  background-color: transparent;
+  border-radius: $spacing-4;
+
+  display: flex;
+  gap: $spacing-4;
+  align-items: center;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #D4DEEC;
   }
 
   &--disabled {
-    background-color: #ccc;
     cursor: not-allowed;
   }
 }
 
-.paginationControls__pageNumber {
-  font-size: 16px;
+.paginationControls__pageButton {
+  background-color: transparent;
+  border: none;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 400;
+  width: 28px;
+  height: 28px;
+  padding: $spacing-4;
+  border-radius: $spacing-4;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #D4DEEC;
+  }
+
+  &.active {
+    border: 2px solid #3483fa;
+    font-weight: bold;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.paginationControls__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-6;
+}
+
+.paginationControls__pageNumbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-6;
+}
+
+/* Estilos específicos para móviles */
+@media (max-width: 767px) {
+  .paginationControls__pageNumbers {
+    display: none; /* Oculta los números de página en móviles */
+  }
+
+  .paginationControls__button p {
+ display: none;
+  }
+}
+
+/* Estilos específicos para dispositivos de escritorio */
+@media (min-width: 768px) {
+  .paginationControls__mobile {
+    display: none; /* Oculta los controles de paginación simplificados en escritorios */
+  }
+
+  .paginationControls__desktop {
+    display: flex; /* Muestra todos los números de página en escritorios */
+  }
 }

@@ -21,7 +21,7 @@ const Header = () => {
       <MaxMarginTemplate>
         <div className={styles["header__container"]}>
           <Logo searchTerm={searchTerm} />
-          <SearchBar />
+          <SearchBar searchParams={searchTerm} />
         </div>
       </MaxMarginTemplate>
     </div>

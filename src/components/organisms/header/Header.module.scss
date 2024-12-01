@@ -11,6 +11,11 @@
   /* 2. Estilo visual */
   background-color: $color-brand-primary;
   box-shadow: $box-shadow-alternative;
+
+  position: fixed;
+  z-index: $z-index-modal;
+  right: 0;
+  left: 0;
 }
 
 .header__container {
@@ -24,10 +29,7 @@
 }
 
 @media screen and (min-width: 768px) {
-
   .header__container {
- 
     gap: $spacing-34;
-  
   }
 }

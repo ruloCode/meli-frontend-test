@@ -17,9 +17,9 @@ export const fetchData = async (searchTerm, offset = 0, limit = 10) => {
 
       const installmentsMessage = installmentsQuantity > 0
         ? `Mismo precio en ${installmentsQuantity} cuotas de $${installmentsAmount.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`
-        : 'No aplica';
+        : '';
 
-      const shippingMessage = item.shipping?.free_shipping ? "Envío gratis" : "Envío no incluido";
+      const shippingMessage = item.shipping?.free_shipping ? "Envío gratis" : "";
 
       const conditionMessage = item.condition === "refurbished" ? "Reacondicionado" : "";
 
