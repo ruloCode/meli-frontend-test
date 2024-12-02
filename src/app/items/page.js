@@ -4,6 +4,7 @@ import PaginationControls from "@/components/organisms/paginationControls/Pagina
 import { fetchData } from "../actions"; // Asegúrate de importar la función fetchData
 import { useRouter } from "next/navigation"; // Necesitamos para manejar la URL
 import ProductsList from "@/components/organisms/productsList/ProductsList";
+import ProductListingSkeleton from "@/components/molecules/productResultsCardSkeleton/ProductResultCardSkeleton";
 
 export default function Home({searchParams}) {
   const [products, setProducts] = useState([]);
@@ -56,7 +57,7 @@ export default function Home({searchParams}) {
   return (
     <div>
       {loading ? (
-        <p>Cargando...</p>
+        <ProductListingSkeleton />
       ) : (
         <>
           {products.length > 0 ? (
