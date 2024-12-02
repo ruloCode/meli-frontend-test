@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./ProductDetail.module.scss";
 import Image from "next/image";
 import Text from "@/components/atoms/text/Text";
+import ProductGallery from "@/components/molecules/productGallery/ProductGallery";
 
 const ProductDetail = ({ product }) => {
 
@@ -21,6 +22,7 @@ const ProductDetail = ({ product }) => {
       ];
     }
   };
+  console.log(product)
   return (
     <div className={styles.productDetail}>
       <MaxWidthMarginTemplate>
@@ -30,14 +32,14 @@ const ProductDetail = ({ product }) => {
           />
           <div className={styles.productCard}>
             <div className={styles.productImageAndInfo}>
-              <div className={styles.imageContainer}>
-                <Image
+
+                <ProductGallery images={product.pictures} />
+                {/* <Image
                   src={product.pictures[0]}
                   alt={product.title}
                   fill
                   className={styles.productImage}
-                />
-              </div>
+                /> */}
               <div className={styles.productInfo}>
                 <Text
                   text={"Nuevo | +100 vendidos"}
