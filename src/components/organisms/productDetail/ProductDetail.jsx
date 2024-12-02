@@ -57,14 +57,17 @@ const ProductDetail = ({ product }) => {
                   <p className={styles.productInfo__shipping}>Envío gratis</p>
                 )}
 
-                <div className={styles.productColor}>
-                  <span className={styles.productInfo__colorLabel}>
-                    Color:{" "}
-                  </span>
-                  <strong className={styles.productInfo__color}>
-                    {product?.color}
-                  </strong>
-                </div>
+
+                  {product?.color && (
+                    <div className={styles.productColor}>
+                      <span className={styles.productInfo__colorLabel}>
+                        Color:{" "}
+                      </span>
+                      <strong className={styles.productInfo__color}>
+                        {product?.color}
+                      </strong>
+                    </div>
+                  )}
               </div>
             </div>
             <div className={styles.productDescription}>

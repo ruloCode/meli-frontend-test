@@ -43,7 +43,7 @@ const SearchBar = ({searchParams}) => {
           value={localSearchTerm}
           onChange={handleChange} 
           onKeyPress={handleKeyPress} 
-          placeholder="Buscar productos..."
+          placeholder="Buscar productos, marcas y más..."
         />
         <div
           className={styles["search-bar__icon-container"]}
