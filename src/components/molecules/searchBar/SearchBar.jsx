@@ -8,51 +8,46 @@ import styles from "./SearchBar.module.scss";
 
 const SearchBar = ({searchParams}) => {
   const { setSearchTerm } = useProductsStore();
-  const [localSearchTerm, setLocalSearchTerm] = useState(""); // Estado local para el término de búsqueda
-  const router = useRouter(); // Hook de Next.js para manejar la navegación
+  const [localSearchTerm, setLocalSearchTerm] = useState("");
+  const router = useRouter(); 
 
-  // Maneja la búsqueda al enviar el formulario
   const handleSearch = () => {
     if (localSearchTerm) {
-      setSearchTerm(localSearchTerm); // Actualizar el estado global con el término de búsqueda
-      // Redirigir a la página de resultados con el término de búsqueda, y página 1 como predeterminada
+      setSearchTerm(localSearchTerm); 
       router.push(`/items?search=${encodeURIComponent(localSearchTerm)}&page=1&per_page=10`);
     }
   };
 
-  // Evitar el comportamiento por defecto del formulario
   const handleSubmit = (e) => {
-    e.preventDefault(); // Evitar que se recargue la página
+    e.preventDefault(); 
     handleSearch();
   };
 
-  // Función para manejar el enter y realizar la búsqueda
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSearch();
     }
   };
 
-  // Actualizar el término de búsqueda local mientras escribe
   const handleChange = (e) => {
-    setLocalSearchTerm(e.target.value); // Actualizar el estado local con lo que se escribe
+    setLocalSearchTerm(e.target.value); 
   };
 
 
 
   return (
-    <Suspense fallback={<div>Loading...</div>}> {/* Suspense Boundary */}
+    <Suspense fallback={<div>Loading...</div>}> 
       <form onSubmit={handleSubmit} className={styles["search-bar"]}>
         <Input
           type="text"
           value={localSearchTerm}
-          onChange={handleChange} // Llamar a handleChange para actualizar el término de búsqueda local
-          onKeyPress={handleKeyPress} // Permite hacer búsqueda con la tecla Enter
+          onChange={handleChange} 
+          onKeyPress={handleKeyPress} 
           placeholder="Buscar productos..."
         />
         <div
           className={styles["search-bar__icon-container"]}
-          onClick={handleSearch} // Llamar a handleSearch al hacer clic en el icono
+          onClick={handleSearch} 
         >
           <Icon
             src={"/assets/ic_Search@2x.png"}

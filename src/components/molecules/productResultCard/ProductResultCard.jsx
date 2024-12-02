@@ -4,7 +4,6 @@ import Text from "@/components/atoms/text/Text"; // Importar componente de texto
 import styles from "./ProductResultCard.module.scss";
 
 const ProductResultCard = ({ product }) => {
-  // Comparar los precios directamente como números
   const originalPrice = parseFloat(product.original_price);
   const currentPrice = parseFloat(product.price.amount);
 

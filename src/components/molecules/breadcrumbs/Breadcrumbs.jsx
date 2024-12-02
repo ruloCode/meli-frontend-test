@@ -1,6 +1,4 @@
-// components/Breadcrumbs.js
 "use client";
-import Link from "next/link";
 import styles from "./Breadcrumbs.module.scss";
 import { useRouter } from "next/navigation";
 import Text from "@/components/atoms/text/Text";
@@ -10,7 +8,6 @@ const Breadcrumbs = ({ steps }) => {
   return (
     <nav className={styles.breadcrumbs}>
       <ol className={styles.breadcrumbs__container}>
-        {/* Primer paso fijo que siempre dirige a la página anterior (inicio) */}
         <li className={styles.step}>
           <button className={styles.mainButton} onClick={() => router.back()}>
             <Text
@@ -23,7 +20,6 @@ const Breadcrumbs = ({ steps }) => {
         </li>
         <span className={styles.separator}> | </span>
 
-        {/* Los pasos restantes que se pasan a través de 'steps' */}
         {steps.map((step, index) => (
           <li key={index} className={styles.step}>
             {index < steps.length - 1 ? (

@@ -1,17 +1,15 @@
-"use client";
 import { useRouter } from "next/navigation";
-import React, { Suspense } from "react";
+import React from "react";
 import styles from "./PaginationControls.module.scss";
 
 const PaginationControls = ({
   searchParams,
   hasNextPage,
   hasPrevPage,
-  totalPages, // Total de páginas disponibles
+  totalPages, 
 }) => {
   const router = useRouter();
 
-  // Obtener la página actual y asegurarse de que sea un número válido
   const page = Math.max(Number(searchParams.page) || 1, 1);
   const per_page = Number(searchParams.per_page) || 10;
   const searchValue = searchParams.search || "";
@@ -93,10 +91,4 @@ const PaginationControls = ({
   );
 };
 
-const PaginationControlsWithSuspense = (props) => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <PaginationControls {...props} />
-  </Suspense>
-);
-
-export default PaginationControlsWithSuspense;
+export default PaginationControls;

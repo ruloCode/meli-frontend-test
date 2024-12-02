@@ -1,4 +1,3 @@
-/* styles/Breadcrumbs.module.scss */
 @import "@/styles/_variables.scss";
 
 .breadcrumbs {
@@ -64,17 +63,14 @@
     flex-wrap: nowrap;
   }
 
-  /* Ocultar los pasos después del primer paso */
   .step:not(:first-child) {
     display: none;
   }
 
-  /* Mostrar el primer paso y el botón de 'Volver al listado' */
   .breadcrumbs__container .step__container:first-child {
     display: flex;
   }
 
-  /* Asegurarse de que el separator entre pasos no se vea */
   .separator {
     display: none;
   }

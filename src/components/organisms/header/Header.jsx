@@ -9,7 +9,6 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState(null);
 
   useEffect(() => {
-    // Solo ejecutar en el cliente
     const storedSearchTerm = localStorage.getItem("searchTerm");
     if (storedSearchTerm) {
       setSearchTerm(storedSearchTerm);

@@ -1,4 +1,3 @@
-// Logo.js
 "use client";
 import Image from "next/image";
 import React from "react";
@@ -10,7 +9,6 @@ import styles from "./Logo.module.scss";
 const Logo = ({ searchTerm }) => {
   const { setSearchTerm } = useProductsStore();
 
-  // Función para manejar el clic en el logo
   const handleClick = () => {
     if (searchTerm) {
       setSearchTerm("");
@@ -19,8 +17,7 @@ const Logo = ({ searchTerm }) => {
 
   return (
     <Link href="/" onClick={handleClick}>
-      <div className={styles["logo__container"]}> {/* Renombrado a BEM */}
-        {/* Aquí va la imagen de tu logo */}
+      <div className={styles["logo__container"]}> 
       </div>
     </Link>
   );

@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import PaginationControls from "@/components/organisms/paginationControls/PaginationControls";
-import { fetchData } from "../actions"; // Asegúrate de importar la función fetchData
-import { useRouter } from "next/navigation"; // Necesitamos para manejar la URL
+import { fetchDataResults } from "../../lib/data";
+import { useRouter } from "next/navigation";
 import ProductsList from "@/components/organisms/productsList/ProductsList";
 import ProductListingSkeleton from "@/components/molecules/productResultsCardSkeleton/ProductResultCardSkeleton";
 
@@ -12,20 +12,17 @@ export default function Home({searchParams}) {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const router = useRouter(); // Hook de Next.js para navegación
+  const router = useRouter();
 
-  // Obtener los parámetros de búsqueda y paginación de la URL
-  const searchValue = searchParams.search; // Termino de búsqueda
-  const page = Number(searchParams.page) || 1; // Número de página
-  const per_page = Number(searchParams.per_page) || 10; // Elementos por página
-  const offset = (page - 1) * per_page; // Calcular el offset basado en la página
+  const searchValue = searchParams.search;
+  const page = Number(searchParams.page) || 1;
+  const per_page = Number(searchParams.per_page) || 10;
+  const offset = (page - 1) * per_page;
 
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
-
-      // Realiza la búsqueda con el término y la paginación
-      const { items, categories, total } = await fetchData(
+      const { items, categories, total } = await fetchDataResults(
         searchValue,
         offset,
         per_page
@@ -36,16 +33,14 @@ export default function Home({searchParams}) {
       setLoading(false);
     };
 
-    loadData(); // Cargar los productos cuando cambien los parámetros
-  }, [searchValue, page, per_page]); // Dependemos de los parámetros search, page y per_page
+    loadData();
+  }, [searchValue, page, per_page]);
 
   const start = (page - 1) * per_page;
   const end = start + per_page;
 
-  // Calcular el total de páginas
   const totalPages = Math.ceil(total / per_page);
 
-  // Cambiar la URL para navegar entre páginas
   const handlePageChange = (newPage) => {
     router.push(
       `/items?search=${encodeURIComponent(
@@ -66,19 +61,17 @@ export default function Home({searchParams}) {
             <p>No se encontraron resultados</p>
           )}
 
-          {/* Pasamos totalPages como prop */}
           <PaginationControls
-          searchParams={searchParams}
+            searchParams={searchParams}
             hasNextPage={end < total}
             hasPrevPage={start > 0}
-            totalPages={totalPages} // Pasa el total de páginas
+            totalPages={totalPages}
             page={page}
             per_page={per_page}
-            onPageChange={handlePageChange} // Pasamos el manejador de cambio de página
+            onPageChange={handlePageChange}
           />
         </>
       )}
     </div>
   );
 }
-

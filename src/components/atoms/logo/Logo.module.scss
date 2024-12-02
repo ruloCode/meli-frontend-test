@@ -1,20 +1,15 @@
-/* Logo.module.scss */
 @import "@/styles/_variables.scss";
 
 .logo {
-  /* Estilos para el bloque logo */
 
   &__container {
-    /* 1. Posicionamiento */
     position: static;
     left: 0;
     top: 0;
 
-    /* 2. Caja de modelo */
     width: 44px;
     height: 32px;
 
-    /* 3. Color y fondo */
     background-repeat: no-repeat;
     background-image: url("/assets/logo__small_25years.png");
     background-size: contain;
@@ -22,19 +17,15 @@
 
 
 
-    /* 5. Visualización */
     display: flex;
     overflow: hidden;
   }
 
-  /* Media query para pantallas grandes */
   @media screen and (min-width: 768px) {
     &__container {
-      /* 2. Caja de modelo */
       width: 134px;
       height: 34px;
 
-      /* 3. Color y fondo */
       background-image: url("/assets/logo_large_25years@2x.png");
     }
   }

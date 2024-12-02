@@ -2,12 +2,10 @@ import Breadcrumbs from "@/components/molecules/breadcrumbs/Breadcrumbs";
 import MaxWidthMarginTemplate from "@/components/templates/maxWidthMarginTemplate/MaxWidthMarginTemplate";
 import React from "react";
 import styles from "./ProductDetail.module.scss";
-import Image from "next/image";
 import Text from "@/components/atoms/text/Text";
 import ProductGallery from "@/components/molecules/productGallery/ProductGallery";
 
 const ProductDetail = ({ product }) => {
-
   const getBreadcrumbs = () => {
     if (product.categorys.length > 1) {
       return [
@@ -22,24 +20,16 @@ const ProductDetail = ({ product }) => {
       ];
     }
   };
-  console.log(product)
+  console.log(product);
   return (
     <div className={styles.productDetail}>
       <MaxWidthMarginTemplate>
         <div className={styles.productDetail__container}>
-          <Breadcrumbs
-            steps={getBreadcrumbs()}
-          />
+          <Breadcrumbs steps={getBreadcrumbs()} />
           <div className={styles.productCard}>
             <div className={styles.productImageAndInfo}>
+              <ProductGallery images={product.pictures} />
 
-                <ProductGallery images={product.pictures} />
-                {/* <Image
-                  src={product.pictures[0]}
-                  alt={product.title}
-                  fill
-                  className={styles.productImage}
-                /> */}
               <div className={styles.productInfo}>
                 <Text
                   text={"Nuevo | +100 vendidos"}
@@ -77,7 +67,7 @@ const ProductDetail = ({ product }) => {
                     color="success-color"
                   />
                 )}
-             
+
                 <div className={styles.productColor}>
                   <Text text={`Color: `} size="small" weight="regular" />
                   <Text

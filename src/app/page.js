@@ -18,9 +18,7 @@ export default function Home({ searchParams }) {
 
   return (
     <MaxWidthMarginTemplate>
-      {isFirstVisit && (
-        <Onboarding />
-      )}
+      {isFirstVisit && <Onboarding />}
     </MaxWidthMarginTemplate>
   );
 }
