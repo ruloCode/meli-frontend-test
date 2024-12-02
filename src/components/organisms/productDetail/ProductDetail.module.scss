@@ -21,7 +21,10 @@
   flex-direction: column;
   gap: $spacing-28;
 
-  padding: $spacing-24;
+  padding: $spacing-8;
+  @media (min-width: 768px) {
+    padding: $spacing-24;
+  }
 }
 
 .productName {

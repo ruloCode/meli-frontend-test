@@ -8,6 +8,7 @@ export default function ProductGallery({ images }) {
   const [selectedImage, setSelectedImage] = useState(0)
   const [startIndex, setStartIndex] = useState(0)
   const visibleThumbnails = 6
+  const [hoveredImage, setHoveredImage] = useState(null)
 
   const showNextThumbnails = () => {
     if (startIndex + visibleThumbnails < images.length) {
@@ -25,41 +26,29 @@ export default function ProductGallery({ images }) {
     <div className={styles.galleryContainer}>
       {/* Thumbnails */}
       <div className={styles.thumbnailsContainer}>
-       
-          {images
-            .slice(startIndex, startIndex + visibleThumbnails)
-            .map((image, index) => (
-              <button
-                key={startIndex + index}
-                onClick={() => setSelectedImage(startIndex + index)}
-                className={`${styles.thumbnailButton} ${selectedImage === startIndex + index ? styles.selected : ''}`}
-              >
-                <Image
-                  src={image}
-                
-                  fill
-                  className={styles.thumbnailImage}
-                />
-              </button>
-            ))}
-          {startIndex + visibleThumbnails < images.length && (
+        {images
+          .slice(startIndex, startIndex + visibleThumbnails)
+          .map((image, index) => (
             <button
-              onClick={showNextThumbnails}
-              className={styles.arrowButton}
+              key={startIndex + index}
+              onClick={() => setSelectedImage(startIndex + index)} // Set selected image on click
+              onMouseEnter={() => setHoveredImage(startIndex + index)} // Set hovered image on hover
+              onMouseLeave={() => setHoveredImage(null)} // Reset hover state
+              className={`${styles.thumbnailButton} ${selectedImage === startIndex + index ? styles.selected : ''}`}
             >
-              <span className="text-sm font-medium">
-                +{images.length - (startIndex + visibleThumbnails)}
-              </span>
+              <Image
+                src={image}
+                fill
+                className={styles.thumbnailImage}
+              />
             </button>
-          )}
-        
+          ))}
       </div>
 
       {/* Main Image */}
       <div className={styles.mainImageContainer}>
         <Image
-          src={images[selectedImage]}
-  
+          src={images[hoveredImage !== null ? hoveredImage : selectedImage]} // Show hovered image or selected image
           fill
           objectFit='contain'
           className={styles.mainImage}
