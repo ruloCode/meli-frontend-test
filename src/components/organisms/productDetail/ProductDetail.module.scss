@@ -1,4 +1,5 @@
 @import "@/styles/_variables.scss";
+@import "@/styles/fonts.scss";
 
 .productDetail {
   display: flex;
@@ -11,6 +12,8 @@
   flex-direction: column;
   gap: $spacing-10;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .productCard {
@@ -20,8 +23,8 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-28;
-
   padding: $spacing-8;
+  
   @media (min-width: 768px) {
     padding: $spacing-24;
   }
@@ -31,26 +34,48 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-8;
+  font-size:  22px;
+  font-weight: 600;
 }
+
 .productDescription {
   display: flex;
   flex-direction: column;
   gap: $spacing-16;
+  width: 100%;
+  overflow: hidden;
 }
+
 .productImageAndInfo {
   display: grid;
   gap: $spacing-48;
   grid-template-columns: 1fr;
+
+  width: 100%;
+  overflow: hidden;
+  
+  @media screen and (min-width: 768px) {
+    grid-template-columns: auto 1fr;
+  }
 }
+
+.productImageContainer {
+  width: 95%;
+  margin: 0 auto;
+}
+
 .imageContainer {
-  width: 320px;
+  width: 100%;
   height: auto;
   position: relative;
   min-height: 312px;
+  max-width: 320px; 
 }
 
 .productImage {
   object-fit: contain;
+  width: 100%;
+  height: auto;
 }
 
 .productInfo {
@@ -66,21 +91,55 @@
 }
 
 
-@media screen and (min-width: 768px) {
-  .productImageAndInfo {
-    display: grid;
-    gap: $spacing-48;
-    grid-template-columns: auto 1fr;
+
+.productInfo__status {
+  @include font-styles($primary-font, small, regular, secondary); // Usando el estilo de fuente para estado
+}
+
+.productInfo__title {
+  @include font-styles($primary-font, small, bold, primary); // Usando fuente grande y negrita para el título
+  @media screen and (min-width: 768px) {
+  @include font-styles($primary-font, medium, bold, primary); // Usando fuente grande y negrita para el título
+
   }
   
+}
+
+.productInfo__seller {
+  @include font-styles($primary-font, small, regular, primary); // Fuente secundaria para el vendedor
+}
+
+.productInfo__price {
+  @include font-styles($primary-font, large, regular, primary); // Fuente predeterminada para el precio
+}
+
+.productInfo__installments {
+  @include font-styles($primary-font, small, regular, success); // Para los pagos en cuotas
+}
+
+.productInfo__shipping {
+  @include font-styles($primary-font, small, bold, success); // Envío gratis en negrita
+}
+
+.productInfo__colorLabel {
+  @include font-styles($primary-font, small, regular, primary); // Etiqueta de color
+}
+
+.productInfo__color {
+  @include font-styles($primary-font, small, bold, primary); // Color con peso negrita
+}
+
+.productDescription__title {
+  @include font-styles($primary-font, medium, regular, primary); 
+}
+
+.productDescription__text {
+  @include font-styles($primary-font, small, regular, primary); 
 }
 
 @media screen and (min-width: 1200px) {
   .imageContainer {
     width: 600px;
-    height: auto;
-    position: relative;
     min-height: 520px;
   }
-  
 }

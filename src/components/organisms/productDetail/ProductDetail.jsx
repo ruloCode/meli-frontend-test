@@ -2,8 +2,8 @@ import Breadcrumbs from "@/components/molecules/breadcrumbs/Breadcrumbs";
 import MaxWidthMarginTemplate from "@/components/templates/maxWidthMarginTemplate/MaxWidthMarginTemplate";
 import React from "react";
 import styles from "./ProductDetail.module.scss";
-import Text from "@/components/atoms/text/Text";
 import ProductGallery from "@/components/molecules/productGallery/ProductGallery";
+import { formatCurrency } from "@/utils/currencyFormatter";
 
 const ProductDetail = ({ product }) => {
   const getBreadcrumbs = () => {
@@ -20,7 +20,7 @@ const ProductDetail = ({ product }) => {
       ];
     }
   };
-  console.log(product);
+
   return (
     <div className={styles.productDetail}>
       <MaxWidthMarginTemplate>
@@ -28,64 +28,50 @@ const ProductDetail = ({ product }) => {
           <Breadcrumbs steps={getBreadcrumbs()} />
           <div className={styles.productCard}>
             <div className={styles.productImageAndInfo}>
-              <ProductGallery images={product.pictures} />
+            <div className={styles.productImageContainer}>
+                <ProductGallery images={product.pictures} />
+            </div>
 
               <div className={styles.productInfo}>
-                <Text
-                  text={"Nuevo | +100 vendidos"}
-                  size="xsmall"
-                  weight="tiny"
-                  color="primary"
-                />
+                <small className={styles.productInfo__status}>
+                  Nuevo | +100 vendidos
+                </small>
                 <div className={styles.productName}>
-                  <Text text={product?.title} size="medium" weight="bold" />
-                  <Text
-                    text={"Por: OCEANGREEN ARGENTINA"}
-                    size="small"
-                    weight="tiny"
-                  />
+                  <h1 className={styles.productInfo__title}>
+                    {product?.title}
+                  </h1>
+                  <p className={styles.productInfo__seller}>
+                    Por: OCEANGREEN ARGENTINA
+                  </p>
                 </div>
                 <div>
-                  <Text
-                    text={product?.price}
-                    currency
-                    size="large"
-                    weight="regular"
-                  />
-                  <Text
-                    text={"Mismo precio en 10 cuotas de $151.426"}
-                    size="small"
-                    weight="tiny"
-                    color="success-color"
-                  />
+                  <p className={styles.productInfo__price}>
+                    {formatCurrency(product?.price)}
+                  </p>
+                  <span className={styles.productInfo__installments}>
+                    {" "}
+                    Mismo precio en 10 cuotas de $151.423
+                  </span>
                 </div>
                 {product?.free_shipping && (
-                  <Text
-                    text={"Envío gratis"}
-                    size="small"
-                    weight="bold"
-                    color="success-color"
-                  />
+                  <p className={styles.productInfo__shipping}>Envío gratis</p>
                 )}
 
                 <div className={styles.productColor}>
-                  <Text text={`Color: `} size="small" weight="regular" />
-                  <Text
-                    text={` ${product?.color}`}
-                    size="small"
-                    weight="bold"
-                  />
+                  <span className={styles.productInfo__colorLabel}>
+                    Color:{" "}
+                  </span>
+                  <strong className={styles.productInfo__color}>
+                    {product?.color}
+                  </strong>
                 </div>
               </div>
             </div>
             <div className={styles.productDescription}>
-              <Text
-                text={"Descripción"}
-                size="medium"
-                weight="regular"
-                color="primary"
-              />
-              <Text text={product?.description} size="small" weight="regular" />
+              <h2 className={styles.productDescription__title}>Descripción</h2>
+              <p className={styles.productDescription__text}>
+                {product?.description}
+              </p>
             </div>
           </div>
         </div>
