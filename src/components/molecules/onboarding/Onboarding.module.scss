@@ -6,8 +6,9 @@
   flex-direction: column;
   gap: $spacing-8;
   padding: $spacing-8;
-position: relative;
-  background-color:#3483FA ;
+  position: relative;
+  background-color: #3483fa;
+  margin-right: $spacing-8;
 
   border-radius: $spacing-4;
   width: 350px;
@@ -22,18 +23,18 @@ position: relative;
 }
 
 .closeButton {
-position: absolute;
-top: $spacing-8;
-right: $spacing-8;
-border-radius: $spacing-4;
-border: none;
-padding: $spacing-4;
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: transparent;
-color: white;
-font-size: 20px;
-z-index: $z-index-modal;
-cursor: pointer;
+  position: absolute;
+  top: $spacing-8;
+  right: $spacing-8;
+  border-radius: $spacing-4;
+  border: none;
+  padding: $spacing-4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  z-index: $z-index-modal;
+  cursor: pointer;
 }
