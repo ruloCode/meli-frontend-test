@@ -1,0 +1,39 @@
+@import "@/styles/_variables.scss";
+
+.onboarding {
+  margin-top: $spacing-8;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+  padding: $spacing-8;
+position: relative;
+  background-color:#3483FA ;
+
+  border-radius: $spacing-4;
+  width: 350px;
+  @media (min-width: 768px) {
+    padding: $spacing-24;
+  }
+}
+
+.onboarding__container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeButton {
+position: absolute;
+top: $spacing-8;
+right: $spacing-8;
+border-radius: $spacing-4;
+border: none;
+padding: $spacing-4;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: transparent;
+color: white;
+font-size: 20px;
+z-index: $z-index-modal;
+cursor: pointer;
+}

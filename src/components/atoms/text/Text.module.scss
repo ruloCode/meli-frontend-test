@@ -1,4 +1,5 @@
-// components/atoms/Text/Text.module.scss
+@import "@/styles/_variables.scss";
+
 
 $primary-font: 'Roboto', sans-serif;
 $secondary-font: 'Roboto', sans-serif;
@@ -24,7 +25,8 @@ $colors: (
   primary: rgba(0, 0, 0, 0.9),
   secondary: rgba(0, 0, 0, 0.55),
   success: #00A650,
-  active: #0056b3
+  active: #0056b3,
+  white: #FFFFFF
 );
 
 // Estilos para el componente Text
@@ -115,6 +117,9 @@ $colors: (
   }
   &.active-color {
     color: map-get($colors, active);
+  }
+  &.white-color {
+    color: map-get($colors, white);
   }
 
   // Clase para el texto tachado
