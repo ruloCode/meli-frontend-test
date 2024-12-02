@@ -33,12 +33,21 @@ La aplicación cuenta con tres componentes principales:
 
 - **Responsive Design** 📱💻: La aplicación se adapta perfectamente a diferentes tamaños de pantalla.
 - **SEO Optimized** 🔍: La aplicación está optimizada para motores de búsqueda.
+- **Open Graph y Metatags** 🏷️: El detalle del producto incluye metatags y Open Graph para mejorar la visibilidad y el aspecto en redes sociales.
 - **Performance** 🚄: La aplicación carga y se renderiza de manera eficiente.
+- **Paginación por URL** 🔗: Los resultados de búsqueda se paginan mediante URLs para facilitar el compartir las búsquedas.
 - **Escalabilidad** 🔧: Arquitectura basada en atomic design para facilitar futuras mejoras.
 - **Navegación**:
   - Caja de búsqueda: `/`
   - Resultados de búsqueda: `/items?search=`
   - Detalle del producto: `/items/:id`
+
+
+---
+
+## 🤖 SEO y Robots
+
+La aplicación está configurada para facilitar el rastreo por los motores de búsqueda, con **robots.txt** y **datos estructurados para productos** (`product snippets`).
 
 ---
 
@@ -61,3 +70,5 @@ npm run dev
 La aplicación estará disponible en http://localhost:3000. 🌐
 ## 📝 Licencia
 Este proyecto está bajo la licencia MIT.
+
+¡Espero que disfrutes del proyecto! Si tienes preguntas o comentarios, no dudes en contactarme. 😊
