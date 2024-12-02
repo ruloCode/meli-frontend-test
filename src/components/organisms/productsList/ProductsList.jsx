@@ -1,13 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./ProductsList.module.scss";
-import { useProductsStore } from "@/stores/products-store";
 import ProductResultCard from "@/components/molecules/productResultCard/ProductResultCard";
 import MaxMarginTemplate from "../../templates/maxWidthMarginTemplate/MaxWidthMarginTemplate";
 
-const ProductsList = ({products}) => {
-
-
+const ProductsList = ({ products }) => {
   return (
     <div className={styles.productsList}>
       <MaxMarginTemplate>

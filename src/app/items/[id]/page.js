@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { fetchProductData } from "../../../lib/data";
 import ProductDetail from "@/components/organisms/productDetail/ProductDetail";
 
@@ -71,11 +72,86 @@ export async function generateMetadata(props) {
 export default async function Slug(props) {
   const { params } = props;
   const { id } = params;
-  const product = await fetchProductData(id);
+  const productData = await fetchProductData(id);
+
+  const baseUrl = "https://meli-frontend-test-nu.vercel.app/";
+  const productCanonicalUrl = `${baseUrl}/${id}`;
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    'name': (productData?.title || 'Producto').substring(0, 100),
+    'image': productData?.pictures[0] ,
+    'description': `${productData?.description}`,
+    'sku': productData?.id || 'SKU no disponible',
+    'mpn': productData?.id || 'MPN no disponible',
+  
+    'category': productData?.category_path_from_root[0] || 'Categoría no especificada',
+    'offers': {
+      '@type': 'Offer',
+      'url': productCanonicalUrl,
+      'priceCurrency': 'MXN',
+      'price': Number(productData?.price),
+      'priceValidUntil': '2024-12-31',
+      'itemCondition': 'https://schema.org/NewCondition',
+      'availability': 'https://schema.org/InStock',
+      'shippingDetails': {
+        '@type': 'OfferShippingDetails',
+        'shippingRate': {
+          '@type': 'MonetaryAmount',
+          'value': '0',
+          'currency': 'ARG',
+        },
+        'shippingDestination': {
+          '@type': 'DefinedRegion',
+          'addressCountry': 'ARG',
+        },
+        'deliveryTime': {
+          '@type': 'ShippingDeliveryTime',
+          'handlingTime': {
+            '@type': 'QuantitativeValue',
+            'minValue': '0',
+            'maxValue': '1',
+            'unitCode': 'DAY',
+          },
+          'transitTime': {
+            '@type': 'QuantitativeValue',
+            'minValue': '1',
+            'maxValue': '5',
+            'unitCode': 'DAY',
+          },
+        },
+      },
+      'seller': {
+        '@type': 'Organization',
+        'name': 'Meli',
+      },
+    },
+    'aggregateRating': {
+      '@type': 'AggregateRating',
+      'ratingValue': '4.5',
+      'reviewCount': 270,
+    },
+    'hasMerchantReturnPolicy': {
+      '@type': 'MerchantReturnPolicy',
+      'applicableCountry': 'ARG',
+      'returnPolicyCategory': 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      'merchantReturnDays': 30,
+      'returnMethod': 'https://schema.org/ReturnByMail',
+      'returnFees': 'https://schema.org/FreeReturn',
+    },
+  }
 
   return (
     <div>
-      <ProductDetail product={product} />
+        <Script
+        id='faq-schema'
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+      <ProductDetail product={productData} />
     </div>
   );
 }

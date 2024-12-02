@@ -28,9 +28,9 @@ const ProductDetail = ({ product }) => {
           <Breadcrumbs steps={getBreadcrumbs()} />
           <div className={styles.productCard}>
             <div className={styles.productImageAndInfo}>
-            <div className={styles.productImageContainer}>
+              <div className={styles.productImageContainer}>
                 <ProductGallery images={product.pictures} />
-            </div>
+              </div>
 
               <div className={styles.productInfo}>
                 <small className={styles.productInfo__status}>
@@ -57,17 +57,16 @@ const ProductDetail = ({ product }) => {
                   <p className={styles.productInfo__shipping}>Envío gratis</p>
                 )}
 
-
-                  {product?.color && (
-                    <div className={styles.productColor}>
-                      <span className={styles.productInfo__colorLabel}>
-                        Color:{" "}
-                      </span>
-                      <strong className={styles.productInfo__color}>
-                        {product?.color}
-                      </strong>
-                    </div>
-                  )}
+                {product?.color && (
+                  <div className={styles.productColor}>
+                    <span className={styles.productInfo__colorLabel}>
+                      Color:{" "}
+                    </span>
+                    <strong className={styles.productInfo__color}>
+                      {product?.color}
+                    </strong>
+                  </div>
+                )}
               </div>
             </div>
             <div className={styles.productDescription}>
